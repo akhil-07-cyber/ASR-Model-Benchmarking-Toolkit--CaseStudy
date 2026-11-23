@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 460" width="100%" height="100%" style="background:#ffffff; font-family:'Segoe UI', Arial, sans-serif;">
+    <!-- Title Bar -->
+    <rect x="20" y="15" width="960" height="40" rx="6" fill="#1a365d"/>
+    <text x="500" y="41" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">Figure 4: Computational Profiling: Inference Latency (ms) &amp; Real-Time Factor (RTF) across Hardware Targets</text>
+
+    <!-- CHART 1: INFERENCE LATENCY (LEFT) -->
+    <g transform="translate(50, 75)">
+        <rect x="0" y="0" width="420" height="345" rx="8" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1.5"/>
+        <text x="210" y="28" fill="#1a365d" font-size="13" font-weight="bold" text-anchor="middle">(a) Inference Latency (ms per 5.0s Clip)</text>
+
+        <g transform="translate(60, 50)">
+            <!-- Grid lines (Scale: 0 to 1600 ms, 1ms = 0.15px, 240px max) -->
+            <line x1="0" y1="240" x2="320" y2="240" stroke="#cbd5e0" stroke-width="1.5"/>
+            <line x1="0" y1="180" x2="320" y2="180" stroke="#e2e8f0" stroke-width="1"/>
+            <line x1="0" y1="120" x2="320" y2="120" stroke="#e2e8f0" stroke-width="1"/>
+            <line x1="0" y1="60" x2="320" y2="60" stroke="#e2e8f0" stroke-width="1"/>
+            <line x1="0" y1="0" x2="320" y2="0" stroke="#e2e8f0" stroke-width="1"/>
+
+            <!-- Y Axis labels -->
+            <text x="-10" y="244" fill="#718096" font-size="10" text-anchor="end">0 ms</text>
+            <text x="-10" y="184" fill="#718096" font-size="10" text-anchor="end">400 ms</text>
+            <text x="-10" y="124" fill="#718096" font-size="10" text-anchor="end">800 ms</text>
+            <text x="-10" y="64" fill="#718096" font-size="10" text-anchor="end">1200 ms</text>
+            <text x="-10" y="4" fill="#718096" font-size="10" text-anchor="end">1600 ms</text>
+
+            <!-- Group 1: GMM-HMM (CPU: 185ms = 27.75px, GPU: N/A) -->
+            <rect x="20" y="212.2" width="28" height="27.8" fill="#3182ce" rx="3"/>
+            <text x="34" y="206" fill="#3182ce" font-size="9" font-weight="bold" text-anchor="middle">185ms</text>
+            <text x="64" y="235" fill="#a0aec0" font-size="9" text-anchor="middle">N/A</text>
+            <text x="45" y="258" fill="#2d3748" font-size="9.5" font-weight="bold" text-anchor="middle">GMM-HMM</text>
+
+            <!-- Group 2: Wav2Vec2 CTC (CPU: 340ms = 51px, GPU: 58ms = 8.7px) -->
+            <rect x="100" y="189" width="28" height="51" fill="#3182ce" rx="3"/>
+            <text x="114" y="183" fill="#3182ce" font-size="9" font-weight="bold" text-anchor="middle">340ms</text>
+            <rect x="132" y="231.3" width="28" height="8.7" fill="#38a169" rx="3"/>
+            <text x="146" y="226" fill="#38a169" font-size="9" font-weight="bold" text-anchor="middle">58ms</text>
+            <text x="130" y="258" fill="#2d3748" font-size="9.5" font-weight="bold" text-anchor="middle">Wav2Vec2 CTC</text>
+
+            <!-- Group 3: Whisper-base (CPU: 620ms = 93px, GPU: 105ms = 15.75px) -->
+            <rect x="180" y="147" width="28" height="93" fill="#3182ce" rx="3"/>
+            <text x="194" y="141" fill="#3182ce" font-size="9" font-weight="bold" text-anchor="middle">620ms</text>
+            <rect x="212" y="224.2" width="28" height="15.8" fill="#38a169" rx="3"/>
+            <text x="226" y="218" fill="#38a169" font-size="9" font-weight="bold" text-anchor="middle">105ms</text>
+            <text x="210" y="258" fill="#2d3748" font-size="9.5" font-weight="bold" text-anchor="middle">Whisper Base</text>
+
+            <!-- Group 4: Whisper-small (CPU: 1450ms = 217.5px, GPU: 210ms = 31.5px) -->
+            <rect x="260" y="22.5" width="24" height="217.5" fill="#3182ce" rx="3"/>
+            <text x="272" y="17" fill="#3182ce" font-size="9" font-weight="bold" text-anchor="middle">1450ms</text>
+            <rect x="288" y="208.5" width="24" height="31.5" fill="#38a169" rx="3"/>
+            <text x="300" y="202" fill="#38a169" font-size="9" font-weight="bold" text-anchor="middle">210ms</text>
+            <text x="286" y="258" fill="#2d3748" font-size="9" font-weight="bold" text-anchor="middle">Whisper Small</text>
+        </g>
+
+        <!-- Legend -->
+        <g transform="translate(100, 318)">
+            <rect x="0" y="0" width="12" height="12" rx="2" fill="#3182ce"/>
+            <text x="18" y="10" fill="#4a5568" font-size="10">Intel Core i7 CPU</text>
+            <rect x="135" y="0" width="12" height="12" rx="2" fill="#38a169"/>
+            <text x="153" y="10" fill="#4a5568" font-size="10">NVIDIA RTX GPU</text>
+        </g>
+    </g>
+
+    <!-- CHART 2: REAL-TIME FACTOR (RIGHT) -->
+    <g transform="translate(530, 75)">
+        <rect x="0" y="0" width="420" height="345" rx="8" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1.5"/>
+        <text x="210" y="28" fill="#1a365d" font-size="13" font-weight="bold" text-anchor="middle">(b) Real-Time Factor (RTF = T_proc / T_audio)</text>
+
+        <g transform="translate(60, 50)">
+            <!-- Grid lines (Scale: 0 to 0.35, 1 unit = 685.7px, 240px total) -->
+            <line x1="0" y1="240" x2="320" y2="240" stroke="#cbd5e0" stroke-width="1.5"/>
+            <line x1="0" y1="171.4" x2="320" y2="171.4" stroke="#e2e8f0" stroke-width="1"/>
+            <line x1="0" y1="102.8" x2="320" y2="102.8" stroke="#e2e8f0" stroke-width="1"/>
+            <line x1="0" y1="34.3" x2="320" y2="34.3" stroke="#e2e8f0" stroke-width="1"/>
+
+            <!-- Y Axis labels -->
+            <text x="-10" y="244" fill="#718096" font-size="10" text-anchor="end">0.00</text>
+            <text x="-10" y="175" fill="#718096" font-size="10" text-anchor="end">0.10</text>
+            <text x="-10" y="106" fill="#718096" font-size="10" text-anchor="end">0.20</text>
+            <text x="-10" y="38" fill="#718096" font-size="10" text-anchor="end">0.30</text>
+
+            <!-- Group 1: GMM-HMM (RTF CPU: 0.037 = 25.4px) -->
+            <rect x="25" y="214.6" width="35" height="25.4" fill="#dd6b20" rx="3"/>
+            <text x="42" y="208" fill="#dd6b20" font-size="9" font-weight="bold" text-anchor="middle">0.037</text>
+            <text x="42" y="258" fill="#2d3748" font-size="9.5" font-weight="bold" text-anchor="middle">GMM-HMM</text>
+
+            <!-- Group 2: Wav2Vec2 CTC (RTF CPU: 0.068 = 46.6px, GPU: 0.012 = 8.2px) -->
+            <rect x="105" y="193.4" width="24" height="46.6" fill="#805ad5" rx="3"/>
+            <text x="117" y="187" fill="#805ad5" font-size="8.5" font-weight="bold" text-anchor="middle">0.068</text>
+            <rect x="133" y="231.8" width="24" height="8.2" fill="#553c9a" rx="3"/>
+            <text x="145" y="226" fill="#553c9a" font-size="8.5" font-weight="bold" text-anchor="middle">0.012</text>
+            <text x="131" y="258" fill="#2d3748" font-size="9.5" font-weight="bold" text-anchor="middle">Wav2Vec2 CTC</text>
+
+            <!-- Group 3: Whisper-base (RTF CPU: 0.124 = 85px, GPU: 0.021 = 14.4px) -->
+            <rect x="190" y="155" width="24" height="85" fill="#319795" rx="3"/>
+            <text x="202" y="149" fill="#319795" font-size="8.5" font-weight="bold" text-anchor="middle">0.124</text>
+            <rect x="218" y="225.6" width="24" height="14.4" fill="#234e52" rx="3"/>
+            <text x="230" y="220" fill="#234e52" font-size="8.5" font-weight="bold" text-anchor="middle">0.021</text>
+            <text x="216" y="258" fill="#2d3748" font-size="9.5" font-weight="bold" text-anchor="middle">Whisper Base</text>
+
+            <!-- Group 4: Whisper-small (RTF CPU: 0.290 = 198.8px, GPU: 0.042 = 28.8px) -->
+            <rect x="270" y="41.2" width="22" height="198.8" fill="#38a169" rx="3"/>
+            <text x="281" y="35" fill="#38a169" font-size="8.5" font-weight="bold" text-anchor="middle">0.290</text>
+            <rect x="296" y="211.2" width="22" height="28.8" fill="#22543d" rx="3"/>
+            <text x="307" y="205" fill="#22543d" font-size="8.5" font-weight="bold" text-anchor="middle">0.042</text>
+            <text x="294" y="258" fill="#2d3748" font-size="9" font-weight="bold" text-anchor="middle">Whisper Small</text>
+        </g>
+
+        <!-- Streaming Threshold Line -->
+        <g transform="translate(60, 50)">
+            <line x1="0" y1="0" x2="320" y2="0" stroke="#e53e3e" stroke-width="1.5" stroke-dasharray="4,4"/>
+            <text x="325" y="4" fill="#e53e3e" font-size="9" font-weight="bold">RTF 1.0 Real-Time Threshold (Well Above)</text>
+        </g>
+
+        <!-- Legend -->
+        <g transform="translate(110, 318)">
+            <rect x="0" y="0" width="12" height="12" rx="2" fill="#4a5568"/>
+            <text x="18" y="10" fill="#4a5568" font-size="10">CPU Inference</text>
+            <rect x="125" y="0" width="12" height="12" rx="2" fill="#2b6cb0"/>
+            <text x="143" y="10" fill="#4a5568" font-size="10">GPU Tensor Accelerated</text>
+        </g>
+    </g>
+</svg>

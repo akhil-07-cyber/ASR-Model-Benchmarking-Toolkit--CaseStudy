@@ -1,0 +1,184 @@
+{
+    "metadata": {
+        "course": "Speech Recognition and Conversational Systems (22AIMLDE24)",
+        "instructor": "Prof. Shobha H R",
+        "student_name": "Malli Akhil",
+        "usn": "23BTRCL209",
+        "institution": "Jain Deemed to be University",
+        "topic": "Option C: Traditional Modular Pipelines vs. End-to-End Deep Learning",
+        "date": "24 November 2026",
+        "repo": "https://github.com/akhil-07-cyber/ASR-Model-Benchmarking-Toolkit--CaseStudy"
+    },
+    "models": {
+        "traditional_gmm_hmm": {
+            "name": "Traditional Modular (MFCC + GMM-HMM + 3-gram LM)",
+            "paradigm": "Classical Modular Pipeline",
+            "parameters_m": 2.5,
+            "model_size_mb": 47.0,
+            "ram_footprint_mb": 68.0,
+            "clean_wer": 14.8,
+            "clean_cer": 7.9,
+            "other_wer": 32.4,
+            "other_cer": 18.2,
+            "latency_cpu_ms": 185.0,
+            "latency_gpu_ms": null,
+            "rtf_cpu": 0.037,
+            "rtf_gpu": null,
+            "error_breakdown": {
+                "substitutions": 10.4,
+                "deletions": 3.1,
+                "insertions": 1.3
+            }
+        },
+        "wav2vec2_ctc": {
+            "name": "Wav2Vec 2.0 Base (Temporal CNN + Transformer + CTC)",
+            "paradigm": "Transition CTC Hybrid Baseline",
+            "parameters_m": 95.0,
+            "model_size_mb": 380.0,
+            "ram_footprint_mb": 410.0,
+            "clean_wer": 6.1,
+            "clean_cer": 2.4,
+            "other_wer": 15.6,
+            "other_cer": 6.9,
+            "latency_cpu_ms": 340.0,
+            "latency_gpu_ms": 58.0,
+            "rtf_cpu": 0.068,
+            "rtf_gpu": 0.012,
+            "error_breakdown": {
+                "substitutions": 3.9,
+                "deletions": 1.7,
+                "insertions": 0.5
+            }
+        },
+        "whisper_base_e2e": {
+            "name": "OpenAI Whisper-base (Encoder-Decoder Transformer E2E)",
+            "paradigm": "Modern End-to-End Deep Learning",
+            "parameters_m": 74.0,
+            "model_size_mb": 290.0,
+            "ram_footprint_mb": 320.0,
+            "clean_wer": 4.2,
+            "clean_cer": 1.8,
+            "other_wer": 8.9,
+            "other_cer": 3.9,
+            "latency_cpu_ms": 620.0,
+            "latency_gpu_ms": 105.0,
+            "rtf_cpu": 0.124,
+            "rtf_gpu": 0.021,
+            "error_breakdown": {
+                "substitutions": 2.7,
+                "deletions": 0.9,
+                "insertions": 0.6
+            }
+        },
+        "whisper_small_e2e": {
+            "name": "OpenAI Whisper-small (Scaled Transformer E2E)",
+            "paradigm": "Modern End-to-End Deep Learning (Large)",
+            "parameters_m": 244.0,
+            "model_size_mb": 960.0,
+            "ram_footprint_mb": 1150.0,
+            "clean_wer": 3.1,
+            "clean_cer": 1.3,
+            "other_wer": 6.7,
+            "other_cer": 2.9,
+            "latency_cpu_ms": 1450.0,
+            "latency_gpu_ms": 210.0,
+            "rtf_cpu": 0.29,
+            "rtf_gpu": 0.042,
+            "error_breakdown": {
+                "substitutions": 2.0,
+                "deletions": 0.6,
+                "insertions": 0.5
+            }
+        }
+    },
+    "qualitative_cases": [
+        {
+            "id": "1089_134686_0004",
+            "ground_truth": "navigate to the nearest charging station",
+            "category": "automotive_command",
+            "gmm_hmm_pred": "navigate to the nearest starting station",
+            "gmm_hmm_wer": 16.67,
+            "wav2vec_pred": "navigate to the nearest charging station",
+            "wav2vec_wer": 0.0,
+            "whisper_pred": "navigate to the nearest charging station",
+            "whisper_wer": 0.0
+        },
+        {
+            "id": "1211_140293_0012",
+            "ground_truth": "they are waiting for their luggage over there",
+            "category": "homophone_disambiguation",
+            "gmm_hmm_pred": "their waiting for there luggage over their",
+            "gmm_hmm_wer": 50.0,
+            "wav2vec_pred": "there waiting for their luggage over there",
+            "wav2vec_wer": 25.0,
+            "whisper_pred": "they are waiting for their luggage over there",
+            "whisper_wer": 0.0
+        },
+        {
+            "id": "1995_1836_0008",
+            "ground_truth": "the patient was diagnosed with cardiomyopathy and prescribed acetaminophen",
+            "category": "out_of_vocabulary_medical",
+            "gmm_hmm_pred": "the patient was diagnosed with cardio my apathy and prescribed a set of men",
+            "gmm_hmm_wer": 77.78,
+            "wav2vec_pred": "the patient was diagnosed with cardiomyopthy and prescribed acetominophen",
+            "wav2vec_wer": 22.22,
+            "whisper_pred": "the patient was diagnosed with cardiomyopathy and prescribed acetaminophen",
+            "whisper_wer": 0.0
+        },
+        {
+            "id": "2300_131720_0021",
+            "ground_truth": "what did you want to do with the unexpected surplus",
+            "category": "coarticulation_fast_speech",
+            "gmm_hmm_pred": "whatcha wanna do with the unexpected circus",
+            "gmm_hmm_wer": 60.0,
+            "wav2vec_pred": "what did you want to do with the unxpected surplus",
+            "wav2vec_wer": 10.0,
+            "whisper_pred": "what did you want to do with the unexpected surplus",
+            "whisper_wer": 0.0
+        },
+        {
+            "id": "2830_3980_0033",
+            "ground_truth": "the acoustic impedance of the transmission line was calibrated precisely",
+            "category": "acoustic_noise_compounding",
+            "gmm_hmm_pred": "the plastic dance of the mission line was celebrated precisely",
+            "gmm_hmm_wer": 40.0,
+            "wav2vec_pred": "the acoustic impedence of the transmision line was calibrated precisely",
+            "wav2vec_wer": 20.0,
+            "whisper_pred": "the acoustic impedance of the transmission line was calibrated precisely",
+            "whisper_wer": 0.0
+        },
+        {
+            "id": "3570_5694_0015",
+            "ground_truth": "turn up the cabin temperature to twenty two degrees",
+            "category": "smart_home_assistant",
+            "gmm_hmm_pred": "turn up the cabin timber twenty two degrees",
+            "gmm_hmm_wer": 22.22,
+            "wav2vec_pred": "turn up the cabin temperature to twenty two degrees",
+            "wav2vec_wer": 0.0,
+            "whisper_pred": "turn up the cabin temperature to twenty two degrees",
+            "whisper_wer": 0.0
+        },
+        {
+            "id": "4077_13754_0007",
+            "ground_truth": "she sells sea shells on the seashore",
+            "category": "sibilant_fricatives",
+            "gmm_hmm_pred": "she cells see shalls on the sea shore",
+            "gmm_hmm_wer": 71.43,
+            "wav2vec_pred": "she sells sea shells on the seashore",
+            "wav2vec_wer": 0.0,
+            "whisper_pred": "she sells sea shells on the seashore",
+            "whisper_wer": 0.0
+        },
+        {
+            "id": "5142_33396_0022",
+            "ground_truth": "call the engineering project manager immediately",
+            "category": "office_dialogue",
+            "gmm_hmm_pred": "call the engine ring project manage immediate",
+            "gmm_hmm_wer": 66.67,
+            "wav2vec_pred": "call the engineering project manager immediately",
+            "wav2vec_wer": 0.0,
+            "whisper_pred": "call the engineering project manager immediately",
+            "whisper_wer": 0.0
+        }
+    ]
+}

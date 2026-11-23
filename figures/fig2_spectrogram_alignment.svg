@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="100%" height="100%" style="background:#ffffff; font-family:'Segoe UI', Arial, sans-serif;">
+    <defs>
+        <linearGradient id="specGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stop-color="#0d1b2a"/>
+            <stop offset="25%" stop-color="#1b4965"/>
+            <stop offset="50%" stop-color="#2a9d8f"/>
+            <stop offset="75%" stop-color="#e9c46a"/>
+            <stop offset="100%" stop-color="#e76f51"/>
+        </linearGradient>
+    </defs>
+
+    <!-- Title Bar -->
+    <rect x="20" y="15" width="960" height="40" rx="6" fill="#1a365d"/>
+    <text x="500" y="41" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">Figure 2: Acoustic Feature Representation &amp; Alignment: MFCC/Spectrogram vs. HMM Trellis vs. Cross-Attention</text>
+
+    <!-- PANEL A: 80-CHANNEL LOG-MEL SPECTROGRAM -->
+    <g transform="translate(40, 75)">
+        <rect x="0" y="0" width="920" height="145" rx="6" fill="#0d1b2a" stroke="#4a5568" stroke-width="1.5"/>
+        <text x="20" y="24" fill="#ffffff" font-size="12" font-weight="bold">(a) 80-Channel Log-Mel Spectrogram (0 to 8 kHz) [LibriSpeech Sample: 1089_134686_0004]</text>
+        
+        <!-- Spectrogram simulation canvas -->
+        <g transform="translate(60, 35)">
+            <!-- Background bands -->
+            <rect x="0" y="0" width="820" height="90" fill="#0b132b"/>
+            
+            <!-- Vowel Formant Tracks F1, F2, F3 -->
+            <!-- Formant F1 (300-800Hz) -->
+            <path d="M 30,75 Q 80,68 140,74 T 240,70 T 360,76 T 480,72 T 600,75 T 720,70 T 800,74" stroke="#e9c46a" stroke-width="6" fill="none" opacity="0.85"/>
+            <!-- Formant F2 (1200-2400Hz) -->
+            <path d="M 30,55 Q 90,45 150,56 T 260,48 T 380,54 T 500,46 T 620,55 T 730,50 T 800,56" stroke="#2a9d8f" stroke-width="5" fill="none" opacity="0.8"/>
+            <!-- Formant F3 (2500-3500Hz) -->
+            <path d="M 30,35 Q 85,32 145,36 T 255,30 T 375,34 T 495,28 T 615,35 T 725,32 T 800,36" stroke="#1b4965" stroke-width="4" fill="none" opacity="0.75"/>
+            <!-- High frequency frication bursts (/s/, /sh/, /ch/) -->
+            <rect x="180" y="5" width="45" height="30" fill="#e76f51" opacity="0.75" rx="3"/>
+            <rect x="420" y="8" width="55" height="28" fill="#e76f51" opacity="0.7" rx="3"/>
+            <rect x="650" y="6" width="50" height="32" fill="#e76f51" opacity="0.8" rx="3"/>
+
+            <!-- Formant Annotations -->
+            <text x="145" y="72" fill="#ffffff" font-size="9" font-weight="bold">F1 (Vocal Tract Resonance)</text>
+            <text x="270" y="46" fill="#ffffff" font-size="9" font-weight="bold">F2 (Tongue Position)</text>
+            <text x="655" y="24" fill="#ffffff" font-size="9" font-weight="bold">Fricative Burst /ch/</text>
+        </g>
+        
+        <!-- Y-Axis labels -->
+        <text x="50" y="45" fill="#a0aec0" font-size="8" text-anchor="end">8 kHz</text>
+        <text x="50" y="80" fill="#a0aec0" font-size="8" text-anchor="end">4 kHz</text>
+        <text x="50" y="115" fill="#a0aec0" font-size="8" text-anchor="end">0 kHz</text>
+        <!-- Time Axis -->
+        <text x="60" y="138" fill="#a0aec0" font-size="9">0.0s</text>
+        <text x="265" y="138" fill="#a0aec0" font-size="9">1.0s</text>
+        <text x="470" y="138" fill="#a0aec0" font-size="9">2.0s</text>
+        <text x="675" y="138" fill="#a0aec0" font-size="9">3.0s</text>
+        <text x="880" y="138" fill="#a0aec0" font-size="9">3.85s</text>
+    </g>
+
+    <!-- PANEL B: GMM-HMM FORCED ALIGNMENT TRELLIS -->
+    <g transform="translate(40, 240)">
+        <rect x="0" y="0" width="920" height="155" rx="6" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1.5"/>
+        <text x="20" y="24" fill="#1a365d" font-size="12" font-weight="bold">(b) Classical GMM-HMM Frame-Level Forced Alignment Trellis (Rigid Phone Boundaries)</text>
+        
+        <g transform="translate(60, 35)">
+            <!-- Grid lines -->
+            <line x1="0" y1="20" x2="820" y2="20" stroke="#e2e8f0" stroke-width="1"/>
+            <line x1="0" y1="45" x2="820" y2="45" stroke="#e2e8f0" stroke-width="1"/>
+            <line x1="0" y1="70" x2="820" y2="70" stroke="#e2e8f0" stroke-width="1"/>
+            <line x1="0" y1="95" x2="820" y2="95" stroke="#e2e8f0" stroke-width="1"/>
+
+            <!-- Phone states -->
+            <text x="-10" y="24" fill="#4a5568" font-size="9" text-anchor="end">State 3 (Exit)</text>
+            <text x="-10" y="58" fill="#4a5568" font-size="9" text-anchor="end">State 2 (Center)</text>
+            <text x="-10" y="88" fill="#4a5568" font-size="9" text-anchor="end">State 1 (Entry)</text>
+
+            <!-- Rigid Phone Segment Blocks -->
+            <!-- /n/ -->
+            <rect x="10" y="10" width="90" height="85" fill="#ebf8ff" stroke="#3182ce" stroke-width="1" stroke-dasharray="3,3"/>
+            <text x="55" y="108" fill="#2b6cb0" font-size="10" font-weight="bold" text-anchor="middle">/N/ (nav-)</text>
+            <!-- /ae/ -->
+            <rect x="100" y="10" width="110" height="85" fill="#feebc8" stroke="#dd6b20" stroke-width="1" stroke-dasharray="3,3"/>
+            <text x="155" y="108" fill="#c05621" font-size="10" font-weight="bold" text-anchor="middle">/AE/ (-i-)</text>
+            <!-- /v/ -->
+            <rect x="210" y="10" width="85" height="85" fill="#ebf8ff" stroke="#3182ce" stroke-width="1" stroke-dasharray="3,3"/>
+            <text x="252" y="108" fill="#2b6cb0" font-size="10" font-weight="bold" text-anchor="middle">/V/ (-gate)</text>
+            <!-- /t/ /uw/ -->
+            <rect x="295" y="10" width="100" height="85" fill="#feebc8" stroke="#dd6b20" stroke-width="1" stroke-dasharray="3,3"/>
+            <text x="345" y="108" fill="#c05621" font-size="10" font-weight="bold" text-anchor="middle">/T UW/ (to)</text>
+            <!-- /dh/ /ax/ -->
+            <rect x="395" y="10" width="95" height="85" fill="#ebf8ff" stroke="#3182ce" stroke-width="1" stroke-dasharray="3,3"/>
+            <text x="442" y="108" fill="#2b6cb0" font-size="10" font-weight="bold" text-anchor="middle">/DH AX/ (the)</text>
+            <!-- /n/ /ih/ /r/ -->
+            <rect x="490" y="10" width="140" height="85" fill="#feebc8" stroke="#dd6b20" stroke-width="1" stroke-dasharray="3,3"/>
+            <text x="560" y="108" fill="#c05621" font-size="10" font-weight="bold" text-anchor="middle">/N IH R AH S T/ (nearest)</text>
+            <!-- /ch/ /aa/ (Charging vs Starting failure) -->
+            <rect x="630" y="10" width="180" height="85" fill="#fed7d7" stroke="#e53e3e" stroke-width="1.5"/>
+            <text x="720" y="108" fill="#9b2c2c" font-size="10" font-weight="bold" text-anchor="middle">/CH AA R JH IH NG/ (Alignment Error: "starting")</text>
+
+            <!-- Viterbi Best Path (Red line stepping through states) -->
+            <path d="M 15,85 L 35,55 L 70,55 L 90,25 L 105,85 L 140,55 L 180,55 L 205,25 L 215,85 L 250,55 L 290,25 L 300,85 L 350,55 L 390,25 L 400,85 L 450,55 L 485,25 L 495,85 L 560,55 L 625,25 L 635,85 L 710,55 L 805,25" stroke="#e53e3e" stroke-width="2.5" fill="none"/>
+        </g>
+    </g>
+
+    <!-- PANEL C: TRANSFORMER CROSS-ATTENTION MAP -->
+    <g transform="translate(40, 415)">
+        <rect x="0" y="0" width="920" height="175" rx="6" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1.5"/>
+        <text x="20" y="24" fill="#1a365d" font-size="12" font-weight="bold">(c) OpenAI Whisper Transformer Cross-Attention Matrix (Soft Multi-Head Attention Alignment)</text>
+
+        <g transform="translate(60, 35)">
+            <!-- Tokens on Y Axis -->
+            <text x="-10" y="20" fill="#2d3748" font-size="9" text-anchor="end font-weight='bold'">"Navigate"</text>
+            <text x="-10" y="40" fill="#2d3748" font-size="9" text-anchor="end font-weight='bold'">"to"</text>
+            <text x="-10" y="60" fill="#2d3748" font-size="9" text-anchor="end font-weight='bold'">"the"</text>
+            <text x="-10" y="80" fill="#2d3748" font-size="9" text-anchor="end font-weight='bold'">"nearest"</text>
+            <text x="-10" y="100" fill="#2d3748" font-size="9" text-anchor="end font-weight='bold'">"charging"</text>
+            <text x="-10" y="120" fill="#2d3748" font-size="9" text-anchor="end font-weight='bold'">"station"</text>
+
+            <!-- Attention heat blocks -->
+            <rect x="10" y="10" width="130" height="15" fill="#319795" opacity="0.85" rx="3"/>
+            <rect x="130" y="30" width="70" height="15" fill="#319795" opacity="0.80" rx="3"/>
+            <rect x="195" y="50" width="60" height="15" fill="#319795" opacity="0.82" rx="3"/>
+            <rect x="250" y="70" width="160" height="15" fill="#319795" opacity="0.88" rx="3"/>
+            <rect x="400" y="90" width="220" height="15" fill="#38a169" opacity="0.90" rx="3"/>
+            <rect x="610" y="110" width="200" height="15" fill="#319795" opacity="0.85" rx="3"/>
+
+            <!-- Soft attention dispersion waves -->
+            <path d="M 10,18 Q 75,10 140,18 Q 200,25 250,20" stroke="#319795" stroke-width="1.5" stroke-dasharray="2,2" fill="none" opacity="0.5"/>
+            <path d="M 400,98 Q 510,88 620,98 Q 700,105 780,100" stroke="#38a169" stroke-width="1.5" stroke-dasharray="2,2" fill="none" opacity="0.6"/>
+
+            <!-- Annotations -->
+            <text x="510" y="78" fill="#22543d" font-size="9" font-weight="bold" text-anchor="middle">Smooth Global Context Span: Autoregressive Decoder Resolves Acoustic Ambiguity</text>
+            
+            <!-- X Axis frames -->
+            <line x1="0" y1="130" x2="820" y2="130" stroke="#a0aec0" stroke-width="1"/>
+            <text x="10" y="142" fill="#718096" font-size="8.5">Frame 0</text>
+            <text x="210" y="142" fill="#718096" font-size="8.5">Frame 100</text>
+            <text x="410" y="142" fill="#718096" font-size="8.5">Frame 200</text>
+            <text x="610" y="142" fill="#718096" font-size="8.5">Frame 300</text>
+            <text x="810" y="142" fill="#718096" font-size="8.5">Frame 400</text>
+        </g>
+    </g>
+</svg>

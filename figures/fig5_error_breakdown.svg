@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" width="100%" height="100%" style="background:#ffffff; font-family:'Segoe UI', Arial, sans-serif;">
+    <!-- Title Bar -->
+    <rect x="20" y="15" width="860" height="40" rx="6" fill="#1a365d"/>
+    <text x="450" y="41" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">Figure 5: Fine-Grained Error Breakdown: Substitutions, Deletions, and Insertions across Architectures</text>
+
+    <!-- Main Chart Container -->
+    <g transform="translate(50, 75)">
+        <rect x="0" y="0" width="800" height="330" rx="8" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1.5"/>
+
+        <g transform="translate(70, 40)">
+            <!-- Grid lines (Scale: 0 to 12% error rate, 1% = 18px, 216px max) -->
+            <line x1="0" y1="216" x2="680" y2="216" stroke="#cbd5e0" stroke-width="1.5"/>
+            <line x1="0" y1="162" x2="680" y2="162" stroke="#e2e8f0" stroke-width="1"/>
+            <line x1="0" y1="108" x2="680" y2="108" stroke="#e2e8f0" stroke-width="1"/>
+            <line x1="0" y1="54" x2="680" y2="54" stroke="#e2e8f0" stroke-width="1"/>
+            <line x1="0" y1="0" x2="680" y2="0" stroke="#e2e8f0" stroke-width="1"/>
+
+            <!-- Y Axis labels -->
+            <text x="-12" y="220" fill="#718096" font-size="10" text-anchor="end">0%</text>
+            <text x="-12" y="166" fill="#718096" font-size="10" text-anchor="end">3%</text>
+            <text x="-12" y="112" fill="#718096" font-size="10" text-anchor="end">6%</text>
+            <text x="-12" y="58" fill="#718096" font-size="10" text-anchor="end">9%</text>
+            <text x="-12" y="4" fill="#718096" font-size="10" text-anchor="end">12%</text>
+
+            <!-- GROUP 1: GMM-HMM Modular (Sub: 10.4%, Del: 3.1%, Ins: 1.3%) -->
+            <!-- Sub: 10.4*18 = 187.2px, Del: 3.1*18 = 55.8px, Ins: 1.3*18 = 23.4px -->
+            <g transform="translate(60, 0)">
+                <rect x="0" y="28.8" width="36" height="187.2" fill="#e53e3e" rx="3"/>
+                <text x="18" y="22" fill="#e53e3e" font-size="10" font-weight="bold" text-anchor="middle">10.4%</text>
+
+                <rect x="44" y="160.2" width="36" height="55.8" fill="#dd6b20" rx="3"/>
+                <text x="62" y="154" fill="#dd6b20" font-size="10" font-weight="bold" text-anchor="middle">3.1%</text>
+
+                <rect x="88" y="192.6" width="36" height="23.4" fill="#3182ce" rx="3"/>
+                <text x="106" y="186" fill="#3182ce" font-size="10" font-weight="bold" text-anchor="middle">1.3%</text>
+
+                <text x="62" y="236" fill="#1a365d" font-size="11" font-weight="bold" text-anchor="middle">Traditional GMM-HMM</text>
+                <text x="62" y="250" fill="#718096" font-size="9" text-anchor="middle">(Lexicon &amp; Trellis Bound)</text>
+            </g>
+
+            <!-- GROUP 2: Wav2Vec2 CTC Baseline (Sub: 3.9%, Del: 1.7%, Ins: 0.5%) -->
+            <!-- Sub: 3.9*18 = 70.2px, Del: 1.7*18 = 30.6px, Ins: 0.5*18 = 9.0px -->
+            <g transform="translate(280, 0)">
+                <rect x="0" y="145.8" width="36" height="70.2" fill="#e53e3e" rx="3"/>
+                <text x="18" y="139" fill="#e53e3e" font-size="10" font-weight="bold" text-anchor="middle">3.9%</text>
+
+                <rect x="44" y="185.4" width="36" height="30.6" fill="#dd6b20" rx="3"/>
+                <text x="62" y="179" fill="#dd6b20" font-size="10" font-weight="bold" text-anchor="middle">1.7%</text>
+
+                <rect x="88" y="207.0" width="36" height="9.0" fill="#3182ce" rx="3"/>
+                <text x="106" y="201" fill="#3182ce" font-size="10" font-weight="bold" text-anchor="middle">0.5%</text>
+
+                <text x="62" y="236" fill="#1a365d" font-size="11" font-weight="bold" text-anchor="middle">Wav2Vec 2.0 CTC</text>
+                <text x="62" y="250" fill="#718096" font-size="9" text-anchor="middle">(Frame Independence)</text>
+            </g>
+
+            <!-- GROUP 3: OpenAI Whisper-base E2E (Sub: 2.7%, Del: 0.9%, Ins: 0.6%) -->
+            <!-- Sub: 2.7*18 = 48.6px, Del: 0.9*18 = 16.2px, Ins: 0.6*18 = 10.8px -->
+            <g transform="translate(500, 0)">
+                <rect x="0" y="167.4" width="36" height="48.6" fill="#e53e3e" rx="3"/>
+                <text x="18" y="161" fill="#e53e3e" font-size="10" font-weight="bold" text-anchor="middle">2.7%</text>
+
+                <rect x="44" y="199.8" width="36" height="16.2" fill="#dd6b20" rx="3"/>
+                <text x="62" y="193" fill="#dd6b20" font-size="10" font-weight="bold" text-anchor="middle">0.9%</text>
+
+                <rect x="88" y="205.2" width="36" height="10.8" fill="#3182ce" rx="3"/>
+                <text x="106" y="199" fill="#3182ce" font-size="10" font-weight="bold" text-anchor="middle">0.6%</text>
+
+                <text x="62" y="236" fill="#1a365d" font-size="11" font-weight="bold" text-anchor="middle">OpenAI Whisper E2E</text>
+                <text x="62" y="250" fill="#718096" font-size="9" text-anchor="middle">(Unified Sequence-to-Sequence)</text>
+            </g>
+        </g>
+
+        <!-- Legend -->
+        <g transform="translate(230, 298)">
+            <rect x="0" y="0" width="14" height="14" rx="3" fill="#e53e3e"/>
+            <text x="22" y="11" fill="#4a5568" font-size="10.5">Substitutions (S)</text>
+
+            <rect x="140" y="0" width="14" height="14" rx="3" fill="#dd6b20"/>
+            <text x="162" y="11" fill="#4a5568" font-size="10.5">Deletions (D)</text>
+
+            <rect x="270" y="0" width="14" height="14" rx="3" fill="#3182ce"/>
+            <text x="292" y="11" fill="#4a5568" font-size="10.5">Insertions (I)</text>
+        </g>
+    </g>
+</svg>
